@@ -1,3 +1,8 @@
+
+/* --- Import Fonts (Harus di awal file CSS) --- */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;600;700;800&display=swap');
+
+/* --- Global / Reset Styles (Opsional, tapi disarankan untuk konsistensi) --- */
 * {
     margin: 0;
     padding: 0;
@@ -110,7 +115,7 @@ nav {
 /* Hero */
 .hero {
   position: relative;
-  background-image: url(Images/Hero.jpg);
+  background-image: url("/Images/Hero.jpg");
   background-size: cover;
   background-position: center;
   border-radius: 12px;
@@ -354,24 +359,7 @@ nav {
         margin: -15px auto 25px auto;
         padding: 0 10px;
     }
-}
 
-/* --- Import Fonts (Harus di awal file CSS) --- */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;600;700;800&display=swap');
-
-/* --- Global / Reset Styles (Opsional, tapi disarankan untuk konsistensi) --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'DM Sans', sans-serif; /* DM Sans sebagai font default body */
-    margin: 0;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f8f9fa; /* Latar belakang body yang sedikit abu-abu */
 }
 
 /* --- Card Grid Container --- */
@@ -683,7 +671,7 @@ body {
 /* --- CTA Newsletter Styles --- */
 .newsletter {
     background-color: #333;
-    background-image: url('Images/CTA\ Newsletter.jpg'); /* Ganti dengan path gambar Anda */
+    background-image: url("/Images/CTA Newsletter.jpg");
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay;
