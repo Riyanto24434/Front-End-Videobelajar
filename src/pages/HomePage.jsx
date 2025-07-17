@@ -129,7 +129,7 @@ export default function BerandaPage() {
 <nav>
   <div className="nav-left">
     <a href="#" className="logo">
-      <img src="/Images/Logo.png" alt="Video Belajar Logo" className="logo-img" />
+      <img src="/Images/logo.png" alt="Video Belajar Logo" className="logo-img" />
     </a>
   </div>
   <div className="nav-right">
