@@ -3,7 +3,7 @@ import RegisterPage from "@/pages/RegisterPage";
 import LoginPage from "@/pages/LoginPage";
 import HomePage from "@/pages/HomePage";
 import BerandaPage from "@/pages/BerandaPage";
-import SemuaProdukPage from "./pages/SemuaProdukPage";
+import SemuaProdukPage from "@/pages/SemuaProdukPage";
 
 
 function App() {
