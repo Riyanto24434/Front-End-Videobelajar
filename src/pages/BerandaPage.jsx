@@ -1,6 +1,7 @@
 import "@/styles/beranda.css";
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import SemuaProdukPage from "@/pages/SemuaProdukPage";
 
 const courseData = [
   {
@@ -156,7 +157,7 @@ export default function BerandaPage() {
           </Link>
         </div>
         <div className="nav-right">
-          <Link to="#">Kategori</Link>
+          <Link to="/SemuaProdukPage">Kategori</Link>
           <div className="avatar-dropdown">
             <img
               src="/Images/musk.jpg"

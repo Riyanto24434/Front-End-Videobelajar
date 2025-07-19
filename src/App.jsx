@@ -3,7 +3,7 @@ import RegisterPage from "@/pages/RegisterPage";
 import LoginPage from "@/pages/LoginPage";
 import HomePage from "@/pages/HomePage";
 import BerandaPage from "@/pages/BerandaPage";
-import SemuaProduk from "./pages/SemuaProduk";
+import SemuaProdukPage from "./pages/SemuaProdukPage";
 
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/beranda" element={<BerandaPage />} />
-      <Route path="/" element={<SemuaProduk />} />
+      <Route path="/semua-produk" element={<SemuaProdukPage />} />
     </Routes>
   );
 }
