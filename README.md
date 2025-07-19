@@ -21,3 +21,9 @@ Project ini mencakup halaman Register, Login, dan Homepage yang dibangun menggun
    ```bash
    git clone https://github.com/username/repo-kamu.git
    cd repo-kamu
+
+---
+
+## 🔑 .env Variables
+Silakan buat file `.env` di folder utama.
+
