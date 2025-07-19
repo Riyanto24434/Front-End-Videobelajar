@@ -157,7 +157,7 @@ export default function BerandaPage() {
           </Link>
         </div>
         <div className="nav-right">
-          <Link to="/SemuaProdukPage">Kategori</Link>
+          <Link to="/semua-produk">Kategori</Link>
           <div className="avatar-dropdown">
             <img
               src="/Images/musk.jpg"
