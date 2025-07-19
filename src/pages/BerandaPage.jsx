@@ -1,5 +1,6 @@
 import "@/styles/beranda.css";
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const courseData = [
   {
@@ -122,18 +123,56 @@ const courseData = [
 ];
 
 export default function BerandaPage() {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsDropdownOpen(false);
+    navigate("/login");
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest(".avatar-dropdown")) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+
   return (
     <>
       {/* Navigation */}
       <nav>
         <div className="nav-left">
-          <a href="#" className="logo">
+          <Link to="/" className="logo">
             <img src="/Images/logo.png" alt="Video Belajar Logo" className="logo-img" />
-          </a>
+          </Link>
         </div>
         <div className="nav-right">
-          <a href="#">Kategori</a>
-          <img src="/Images/musk.jpg" alt="Avatar" className="avatar" />
+          <Link to="#">Kategori</Link>
+          <div className="avatar-dropdown">
+            <img
+              src="/Images/musk.jpg"
+              alt="Avatar"
+              className="avatar"
+              onClick={toggleDropdown}
+            />
+            {isDropdownOpen && (
+              <div className="dropdown-menu">
+                <Link to="/profil" onClick={() => setIsDropdownOpen(false)}>Profil Saya</Link>
+                <Link to="/kelas" onClick={() => setIsDropdownOpen(false)}>Kelas Saya</Link>
+                <Link to="/pesanan" onClick={() => setIsDropdownOpen(false)}>Pesanan Saya</Link>
+                <button onClick={handleLogout} className="logout-link">Keluar ↩</button>
+              </div>
+            )}
+          </div>
         </div>
       </nav>
 

@@ -112,6 +112,23 @@ nav {
     box-sizing: border-box;
 }
 
+.dropdown-menu button.logout-link {
+  background: none;
+  border: none;
+  text-align: left;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dropdown-menu button.logout-link:hover {
+  background-color: #f5f5f5;
+}
+
+
 /* Hero */
 .hero {
   position: relative;
