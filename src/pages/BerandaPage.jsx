@@ -124,26 +124,26 @@ const courseData = [
 
 export default function BerandaPage() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
   const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+    setIsDropdownOpen((prev) => !prev);
   };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    setIsDropdownOpen(false);
     navigate("/login");
   };
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest(".avatar-dropdown")) {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
       }
     };
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
