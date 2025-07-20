@@ -36,8 +36,17 @@ const courseData = [
 export default function SemuaProdukPage() {
   const [filter, setFilter] = useState({});
   const [filteredCourses, setFilteredCourses] = useState(courseData);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // ✅ TAMBAHKAN
   const location = useLocation();
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prev) => !prev);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
 
   useEffect(() => {
     let result = [...courseData];
@@ -79,37 +88,8 @@ export default function SemuaProdukPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
-      <nav>
-        <div className="nav-left">
-          <Link to="/" className="logo">
-            <img src="/Images/logo.png" alt="Video Belajar Logo" className="logo-img" />
-          </Link>
-        </div>
-        <div className="nav-right">
-          <Link
-            to="/semua-produk"
-            className={`kategori-link ${location.pathname === "/semua-produk" ? "text-green-600 font-semibold" : ""}`}
-          >
-            Kategori
-          </Link>
-          <div className="avatar-dropdown">
-            <img
-              src="/Images/musk.jpg"
-              alt="Avatar"
-              className="avatar"
-              onClick={toggleDropdown}
-            />
-            {isDropdownOpen && (
-              <div className="dropdown-menu">
-                <Link to="/profil" onClick={() => setIsDropdownOpen(false)}>Profil Saya</Link>
-                <Link to="/kelas" onClick={() => setIsDropdownOpen(false)}>Kelas Saya</Link>
-                <Link to="/pesanan" onClick={() => setIsDropdownOpen(false)}>Pesanan Saya</Link>
-                <button onClick={handleLogout} className="logout-link">Keluar ↩</button>
-              </div>
-            )}
-          </div>
-        </div>
-      </nav>
+
+      <Navbar activePage="kategori" />
 
       <main className="max-w-[1300px] mx-auto px-4 md:px-6 py-10 flex flex-col lg:flex-row gap-8">
         {/* Sidebar Filter */}

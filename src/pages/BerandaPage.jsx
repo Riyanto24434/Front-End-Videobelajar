@@ -2,6 +2,7 @@ import "@/styles/beranda.css";
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SemuaProdukPage from "@/pages/SemuaProdukPage";
+import Navbar from "@/components/Navbar";
 
 const courseData = [
   {
@@ -150,32 +151,8 @@ export default function BerandaPage() {
   return (
     <>
       {/* Navigation */}
-      <nav>
-        <div className="nav-left">
-          <Link to="/" className="logo">
-            <img src="/Images/logo.png" alt="Video Belajar Logo" className="logo-img" />
-          </Link>
-        </div>
-        <div className="nav-right">
-          <Link to="/semua-produk">Kategori</Link>
-          <div className="avatar-dropdown">
-            <img
-              src="/Images/musk.jpg"
-              alt="Avatar"
-              className="avatar"
-              onClick={toggleDropdown}
-            />
-            {isDropdownOpen && (
-              <div className="dropdown-menu">
-                <Link to="/profil" onClick={() => setIsDropdownOpen(false)}>Profil Saya</Link>
-                <Link to="/kelas" onClick={() => setIsDropdownOpen(false)}>Kelas Saya</Link>
-                <Link to="/pesanan" onClick={() => setIsDropdownOpen(false)}>Pesanan Saya</Link>
-                <button onClick={handleLogout} className="logout-link">Keluar ↩</button>
-              </div>
-            )}
-          </div>
-        </div>
-      </nav>
+
+      <Navbar activePage="beranda" />
 
       <main className="page-content-wrapper">
         {/* Hero Section */}

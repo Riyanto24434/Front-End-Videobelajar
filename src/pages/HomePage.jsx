@@ -1,6 +1,7 @@
 import "@/styles/home.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Navbar from "@/components/Navbar";
 
 const courseData = [
   {
@@ -126,18 +127,8 @@ export default function BerandaPage() {
   return (
     <>
       {/* Navigation */}
-<nav>
-  <div className="nav-left">
-    <a href="#" className="logo">
-      <img src="/Images/logo.png" alt="Video Belajar Logo" className="logo-img" />
-    </a>
-  </div>
-  <div className="nav-right">
-    <a href="#">Kategori</a>
-    <Link to="/login" className="btn-login">Login</Link>
-    <Link to="/register" className="btn-register">Register</Link>
-  </div>
-</nav>
+
+      <Navbar activePage="home" />
 
       <main className="page-content-wrapper">
         {/* Hero Section */}
