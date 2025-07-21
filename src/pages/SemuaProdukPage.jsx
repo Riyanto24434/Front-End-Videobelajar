@@ -34,7 +34,8 @@ const courseData = [
 
 export default function SemuaProdukPage() {
   const [filter, setFilter] = useState({});
-  const [filteredCourses, setFilteredCourses] = useState(courseData);
+  const [courses, setCourses] = useState(courseData);
+  const [filteredCourses, setFilteredCourses] = useState(courseData); // tetap dipakai untuk hasil filter
 
   useEffect(() => {
     let result = [...courseData];
@@ -70,7 +71,7 @@ export default function SemuaProdukPage() {
     }
 
     setFilteredCourses(result);
-  }, [filter]);
+  }, [filter, courses]);
 
 
   return (
@@ -90,10 +91,55 @@ export default function SemuaProdukPage() {
             <SortDropdown />
           </div>
 
+          {/* Form Tambah Produk */}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const form = e.target;
+              const newCourse = {
+                image: form.image.value,
+                title: form.title.value,
+                instructorImg: form.instructorImg.value,
+                instructorName: form.instructorName.value,
+                instructorTitle: form.instructorTitle.value,
+                ratingValue: form.ratingValue.value,
+                reviewCount: form.reviewCount.value,
+                originalPrice: form.originalPrice.value,
+                discountPrice: form.discountPrice.value,
+              };
+              const updatedCourses = [...courses, newCourse];
+              setCourses(updatedCourses);
+              setFilteredCourses(updatedCourses); // langsung tampil
+              form.reset();
+            }}
+            className="mb-6 space-y-2 border p-4 rounded bg-white shadow"
+          >
+            <h3 className="text-lg font-semibold">Tambah Produk</h3>
+            <input name="title" placeholder="Judul" className="border p-1 w-full" required />
+            <input name="image" placeholder="URL Gambar" className="border p-1 w-full" required />
+            <input name="instructorName" placeholder="Nama Instruktur" className="border p-1 w-full" required />
+            <input name="instructorTitle" placeholder="Jabatan Instruktur" className="border p-1 w-full" />
+            <input name="instructorImg" placeholder="URL Avatar Instruktur" className="border p-1 w-full" />
+            <input name="ratingValue" placeholder="Rating (contoh: 4.5)" className="border p-1 w-full" />
+            <input name="reviewCount" placeholder="Jumlah Review (contoh: (100))" className="border p-1 w-full" />
+            <input name="originalPrice" placeholder="Harga Asli" className="border p-1 w-full" />
+            <input name="discountPrice" placeholder="Harga Diskon" className="border p-1 w-full" />
+            <button type="submit" className="bg-blue-600 text-white px-4 py-1 rounded">Tambah</button>
+          </form>
+
+          {/* Daftar Produk */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
             {filteredCourses.length > 0 ? (
               filteredCourses.map((course, index) => (
-                <ProductCard key={index} {...course} />
+                <ProductCard
+                  key={index}
+                  {...course}
+                  onDelete={() => {
+                    const updated = courses.filter((_, i) => i !== index);
+                    setCourses(updated);
+                    setFilteredCourses(updated);
+                  }}
+                />
               ))
             ) : (
               <p className="col-span-full text-center text-gray-500">Tidak ada produk yang cocok dengan filter.</p>

@@ -8,11 +8,23 @@ export default function ProductCard({
   ratingValue,
   reviewCount,
   originalPrice,
-  discountPrice
+  discountPrice,
+  onDelete
 }) {
   return (
-    <div className="bg-white rounded-xl shadow hover:shadow-lg transition-all overflow-hidden">
+    <div className="bg-white rounded-xl shadow hover:shadow-lg transition-all overflow-hidden relative">
       <img src={image} alt={title} className="w-full h-40 object-cover" />
+      
+      {/* Tombol Hapus */}
+      {onDelete && (
+        <button
+          onClick={onDelete}
+          className="absolute top-2 right-2 bg-red-600 text-white text-xs px-2 py-1 rounded hover:bg-red-700"
+        >
+          Hapus
+        </button>
+      )}
+
       <div className="p-4 space-y-2">
         <h3 className="font-semibold text-gray-800 line-clamp-2">{title}</h3>
         <div className="flex items-center gap-3 mt-2">
