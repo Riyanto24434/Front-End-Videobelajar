@@ -5,6 +5,7 @@ import SidebarFilter from "@/components/SidebarFilter";
 import SortDropdown from "@/components/SortDropdown";
 import ProductCard from "@/components/ProductCard";
 import Pagination from "@/components/Pagination";
+import EditProdukModal from "@/components/EditProdukModal";
 
 const courseData = [
   {
@@ -36,9 +37,11 @@ export default function SemuaProdukPage() {
   const [filter, setFilter] = useState({});
   const [courses, setCourses] = useState(courseData);
   const [filteredCourses, setFilteredCourses] = useState(courseData); // tetap dipakai untuk hasil filter
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(null);
 
   useEffect(() => {
-    let result = [...courseData];
+    let result = [...courses];
 
     // Filter kategori
     if (filter.selectedCategories?.length) {
@@ -139,6 +142,10 @@ export default function SemuaProdukPage() {
                     setCourses(updated);
                     setFilteredCourses(updated);
                   }}
+                  onEdit={() => {
+                    setEditingIndex(index);
+                    setIsEditOpen(true);
+                  }}
                 />
               ))
             ) : (
@@ -151,6 +158,18 @@ export default function SemuaProdukPage() {
           </div>
         </section>
       </main>
+
+      {/* Modal Edit */}
+      <EditProdukModal
+        isOpen={isEditOpen}
+        onClose={() => setIsEditOpen(false)}
+        course={courses[editingIndex]}
+        onSave={(updatedCourse) => {
+          const updatedCourses = [...courses];
+          updatedCourses[editingIndex] = updatedCourse;
+          setCourses(updatedCourses);
+        }}
+      />
     </div>
   );
 }

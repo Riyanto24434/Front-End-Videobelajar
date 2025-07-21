@@ -9,13 +9,24 @@ export default function ProductCard({
   reviewCount,
   originalPrice,
   discountPrice,
-  onDelete
+  onDelete,
+  onEdit
 }) {
   return (
     <div className="bg-white rounded-xl shadow hover:shadow-lg transition-all overflow-hidden relative">
       <img src={image} alt={title} className="w-full h-40 object-cover" />
-      
-      {/* Tombol Hapus */}
+
+      {/* Tombol Edit (kiri atas) */}
+      {onEdit && (
+        <button
+          onClick={onEdit}
+          className="absolute top-2 left-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded hover:bg-yellow-600"
+        >
+          Edit
+        </button>
+      )}
+
+      {/* Tombol Hapus (kanan atas)*/}
       {onDelete && (
         <button
           onClick={onDelete}
