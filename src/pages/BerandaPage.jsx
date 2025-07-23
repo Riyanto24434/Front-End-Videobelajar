@@ -1,129 +1,13 @@
+// src/pages/BerandaPage.jsx
 import "@/styles/beranda.css";
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SemuaProdukPage from "@/pages/SemuaProdukPage";
-
-const courseData = [
-  {
-    image: "/Images/images-kelas/1.jpg",
-    title: "Full Stack Web Developer",
-    description: "Kuasai pengembangan web dari front-end hingga back-end dengan proyek nyata dan terapan.",
-    instructorImg: "/Images/Avatar Pengajar/1.png",
-    instructorName: "Jenna Ortega",
-    instructorTitle: "Senior Accountant di Gojek",
-    rating: "★★☆☆☆",
-    ratingValue: "3.5",
-    reviewCount: "(86)",
-    originalPrice: "Rp 900K",
-    discountPrice: "Rp 700K"
-  },
-  {
-    image: "/Images/images-kelas/2.png",
-    title: "UI/UX Design Mastery for Beginners",
-    description: "Pelajari dasar-dasar UI/UX dari nol hingga mahir dengan proyek praktis.",
-    instructorImg: "/Images/Avatar Pengajar/2.png",
-    instructorName: "Budi Santoso",
-    instructorTitle: "Lead UI/UX Designer di Tokopedia",
-    rating: "★★★★★",
-    ratingValue: "4.9",
-    reviewCount: "(210)",
-    originalPrice: "Rp 500K",
-    discountPrice: "Rp 325K"
-  },
-  {
-    image: "/Images/images-kelas/3.png",
-    title: "Big 4 Auditor Financial Analyst",
-    description: "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan...",
-    instructorImg: "/Images/Avatar Pengajar/3&9.png",
-    instructorName: "Budi Santoso",
-    instructorTitle: "Lead UI/UX Designer di Tokopedia",
-    rating: "★★★★★",
-    ratingValue: "4.9",
-    reviewCount: "(210)",
-    originalPrice: "Rp 450K",
-    discountPrice: "Rp 225K"
-  },
-  {
-    image: "/Images/images-kelas/4.png",
-    title: "Full Stack Web Developer",
-    description: "Kuasai pengembangan web dari front-end hingga back-end dengan proyek nyata dan terapan.",
-    instructorImg: "/Images/Avatar Pengajar/4.png",
-    instructorName: "Jenna Ortega",
-    instructorTitle: "Senior Accountant di Gojek",
-    rating: "★★☆☆☆",
-    ratingValue: "3.5",
-    reviewCount: "(86)",
-    originalPrice: "Rp 900K",
-    discountPrice: "Rp 700K"
-  },
-  {
-    image: "/Images/images-kelas/5.png",
-    title: "UI/UX Design Mastery for Beginners",
-    description: "Pelajari dasar-dasar UI/UX dari nol hingga mahir dengan proyek praktis.",
-    instructorImg: "/Images/Avatar Pengajar/5.png",
-    instructorName: "Budi Santoso",
-    instructorTitle: "Lead UI/UX Designer di Tokopedia",
-    rating: "★★★★★",
-    ratingValue: "4.9",
-    reviewCount: "(210)",
-    originalPrice: "Rp 500K",
-    discountPrice: "Rp 325K"
-  },
-  {
-    image: "/Images/images-kelas/6.png",
-    title: "Big 4 Auditor Financial Analyst",
-    description: "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan...",
-    instructorImg: "/Images/Avatar Pengajar/6.png",
-    instructorName: "Budi Santoso",
-    instructorTitle: "Lead UI/UX Designer di Tokopedia",
-    rating: "★★★★★",
-    ratingValue: "4.9",
-    reviewCount: "(210)",
-    originalPrice: "Rp 450K",
-    discountPrice: "Rp 225K"
-  },
-  {
-    image: "/Images/images-kelas/7.png",
-    title: "Full Stack Web Developer",
-    description: "Kuasai pengembangan web dari front-end hingga back-end dengan proyek nyata dan terapan.",
-    instructorImg: "/Images/Avatar Pengajar/7.png",
-    instructorName: "Jenna Ortega",
-    instructorTitle: "Senior Accountant di Gojek",
-    rating: "★★☆☆☆",
-    ratingValue: "3.5",
-    reviewCount: "(86)",
-    originalPrice: "Rp 900K",
-    discountPrice: "Rp 700K"
-  },
-  {
-    image: "/Images/images-kelas/8.png",
-    title: "UI/UX Design Mastery for Beginners",
-    description: "Pelajari dasar-dasar UI/UX dari nol hingga mahir dengan proyek praktis.",
-    instructorImg: "/Images/Avatar Pengajar/8.png",
-    instructorName: "Budi Santoso",
-    instructorTitle: "Lead UI/UX Designer di Tokopedia",
-    rating: "★★★★★",
-    ratingValue: "4.9",
-    reviewCount: "(210)",
-    originalPrice: "Rp 500K",
-    discountPrice: "Rp 325K"
-  },
-  {
-    image: "/Images/images-kelas/9.png",
-    title: "Big 4 Auditor Financial Analyst",
-    description: "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan...",
-    instructorImg: "/Images/Avatar Pengajar/3&9.png",
-    instructorName: "Budi Santoso",
-    instructorTitle: "Lead UI/UX Designer di Tokopedia",
-    rating: "★★★★★",
-    ratingValue: "4.9",
-    reviewCount: "(210)",
-    originalPrice: "Rp 450K",
-    discountPrice: "Rp 225K"
-  }
-];
+import useFetch from "@/hooks/useFetch";
 
 export default function BerandaPage() {
+  const { data: courseData, loading, error } = useFetch("/courses");
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
@@ -166,7 +50,7 @@ export default function BerandaPage() {
               onClick={toggleDropdown}
             />
             {isDropdownOpen && (
-              <div className="dropdown-menu">
+              <div className="dropdown-menu" ref={dropdownRef}>
                 <Link to="/profil" onClick={() => setIsDropdownOpen(false)}>Profil Saya</Link>
                 <Link to="/kelas" onClick={() => setIsDropdownOpen(false)}>Kelas Saya</Link>
                 <Link to="/pesanan" onClick={() => setIsDropdownOpen(false)}>Pesanan Saya</Link>
@@ -209,35 +93,42 @@ export default function BerandaPage() {
             <button>Bisnis</button>
           </div>
 
-          <div className="card-grid">
-            {courseData.map((course, index) => (
-              <div key={index} className="course-card">
-                <img src={course.image} alt="Thumbnail" className="course-thumbnail" />
-                <div className="card-body">
-                  <h3>{course.title}</h3>
-                  <p className="course-description">{course.description}</p>
-                  <div className="instructor-info">
-                    <img src={course.instructorImg} alt="Avatar" className="instructor-avatar" />
-                    <div className="instructor-details">
-                      <p className="instructor-name">{course.instructorName}</p>
-                      <p className="instructor-title">{course.instructorTitle}</p>
+          {/* Feedback Loading & Error */}
+          {loading && <p className="text-center text-gray-500 mt-6">Memuat data dari server...</p>}
+          {error && <p className="text-center text-red-500 mt-6">Terjadi kesalahan: {error.message}</p>}
+
+          {/* Data tampil hanya jika tidak loading & tidak error */}
+          {!loading && !error && (
+            <div className="card-grid">
+              {courseData.map((course, index) => (
+                <div key={index} className="course-card">
+                  <img src={course.image} alt="Thumbnail" className="course-thumbnail" />
+                  <div className="card-body">
+                    <h3>{course.title}</h3>
+                    <p className="course-description">{course.description}</p>
+                    <div className="instructor-info">
+                      <img src={course.instructorImg} alt="Avatar" className="instructor-avatar" />
+                      <div className="instructor-details">
+                        <p className="instructor-name">{course.instructorName}</p>
+                        <p className="instructor-title">{course.instructorTitle}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="meta">
-                    <div className="rating">
-                      <span>{course.rating}</span>
-                      <span className="rating-value">{course.ratingValue}</span>
-                      <span className="review-count">{course.reviewCount}</span>
-                    </div>
-                    <div className="price-info">
-                      <span className="original-price">{course.originalPrice}</span>
-                      <span className="discount-price">{course.discountPrice}</span>
+                    <div className="meta">
+                      <div className="rating">
+                        <span>{course.rating}</span>
+                        <span className="rating-value">{course.ratingValue}</span>
+                        <span className="review-count">{course.reviewCount}</span>
+                      </div>
+                      <div className="price-info">
+                        <span className="original-price">{course.originalPrice}</span>
+                        <span className="discount-price">{course.discountPrice}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* CTA Newsletter */}

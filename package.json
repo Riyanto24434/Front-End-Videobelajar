@@ -9,15 +9,23 @@
   },
   "dependencies": {
     "axios": "^1.10.0",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.1",
+    "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^7.6.3",
+    "stream-browserify": "^3.0.0",
+    "util": "^0.12.5",
     "vite": "^5.4.19"
   },
   "devDependencies": {
+    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
+    "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
     "@vitejs/plugin-react": "^4.6.0",
     "autoprefixer": "^10.4.0",
     "postcss": "^8.4.0",
+    "rollup-plugin-node-polyfills": "^0.2.1",
     "tailwindcss": "^3.3.0"
   }
 }
