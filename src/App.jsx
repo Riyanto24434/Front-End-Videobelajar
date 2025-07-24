@@ -1,3 +1,4 @@
+// src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RegisterPage from "@/pages/RegisterPage";
 import LoginPage from "@/pages/LoginPage";
@@ -5,8 +6,10 @@ import HomePage from "@/pages/HomePage";
 import BerandaPage from "@/pages/BerandaPage";
 import SemuaProdukPage from "@/pages/SemuaProdukPage";
 
-
 function App() {
+  console.log("ENV ALL:", import.meta.env);
+  console.log("API URL:", import.meta.env.VITE_API_URL);
+
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
@@ -19,6 +22,3 @@ function App() {
 }
 
 export default App;
-
-console.log("ENV ALL:", import.meta.env);
-console.log("API URL:", import.meta.env.VITE_API_URL);
