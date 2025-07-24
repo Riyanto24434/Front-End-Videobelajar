@@ -1,4 +1,3 @@
-// src/pages/SemuaProdukPage.jsx
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import SidebarFilter from "@/components/SidebarFilter";
@@ -8,6 +7,7 @@ import Pagination from "@/components/Pagination";
 import EditProdukModal from "@/components/EditProdukModal";
 
 const courseData = [
+  /* DATA PRODUK DUMMY */
   {
     image: "/Images/images-kelas/1.jpg",
     title: "Full Stack Web Developer",
@@ -17,7 +17,7 @@ const courseData = [
     ratingValue: "4.5",
     reviewCount: "(120)",
     originalPrice: "Rp 900K",
-    discountPrice: "Rp 700K"
+    discountPrice: "Rp 700K",
   },
   {
     image: "/Images/images-kelas/2.png",
@@ -28,22 +28,137 @@ const courseData = [
     ratingValue: "4.9",
     reviewCount: "(210)",
     originalPrice: "Rp 500K",
-    discountPrice: "Rp 325K"
+    discountPrice: "Rp 325K",
   },
-  // Tambah lainnya sesuai kebutuhan
+  {
+    image: "/Images/images-kelas/1.jpg",
+    title: "Full Stack Web Developer",
+    instructorImg: "/Images/Avatar Pengajar/1.png",
+    instructorName: "Jenna Ortega",
+    instructorTitle: "Senior Accountant di Gojek",
+    ratingValue: "4.5",
+    reviewCount: "(120)",
+    originalPrice: "Rp 900K",
+    discountPrice: "Rp 700K",
+  },
+  {
+    image: "/Images/images-kelas/2.png",
+    title: "UI/UX Design Mastery",
+    instructorImg: "/Images/Avatar Pengajar/2.png",
+    instructorName: "Budi Santoso",
+    instructorTitle: "Lead Designer di Tokopedia",
+    ratingValue: "4.9",
+    reviewCount: "(210)",
+    originalPrice: "Rp 500K",
+    discountPrice: "Rp 325K",
+  },
+  {
+    image: "/Images/images-kelas/1.jpg",
+    title: "Full Stack Web Developer",
+    instructorImg: "/Images/Avatar Pengajar/1.png",
+    instructorName: "Jenna Ortega",
+    instructorTitle: "Senior Accountant di Gojek",
+    ratingValue: "4.5",
+    reviewCount: "(120)",
+    originalPrice: "Rp 900K",
+    discountPrice: "Rp 700K",
+  },
+  {
+    image: "/Images/images-kelas/2.png",
+    title: "UI/UX Design Mastery",
+    instructorImg: "/Images/Avatar Pengajar/2.png",
+    instructorName: "Budi Santoso",
+    instructorTitle: "Lead Designer di Tokopedia",
+    ratingValue: "4.9",
+    reviewCount: "(210)",
+    originalPrice: "Rp 500K",
+    discountPrice: "Rp 325K",
+  },
+  {
+    image: "/Images/images-kelas/1.jpg",
+    title: "Full Stack Web Developer",
+    instructorImg: "/Images/Avatar Pengajar/1.png",
+    instructorName: "Jenna Ortega",
+    instructorTitle: "Senior Accountant di Gojek",
+    ratingValue: "4.5",
+    reviewCount: "(120)",
+    originalPrice: "Rp 900K",
+    discountPrice: "Rp 700K",
+  },
+  {
+    image: "/Images/images-kelas/2.png",
+    title: "UI/UX Design Mastery",
+    instructorImg: "/Images/Avatar Pengajar/2.png",
+    instructorName: "Budi Santoso",
+    instructorTitle: "Lead Designer di Tokopedia",
+    ratingValue: "4.9",
+    reviewCount: "(210)",
+    originalPrice: "Rp 500K",
+    discountPrice: "Rp 325K",
+  },
+  {
+    image: "/Images/images-kelas/1.jpg",
+    title: "Full Stack Web Developer",
+    instructorImg: "/Images/Avatar Pengajar/1.png",
+    instructorName: "Jenna Ortega",
+    instructorTitle: "Senior Accountant di Gojek",
+    ratingValue: "4.5",
+    reviewCount: "(120)",
+    originalPrice: "Rp 900K",
+    discountPrice: "Rp 700K",
+  },
+  {
+    image: "/Images/images-kelas/2.png",
+    title: "UI/UX Design Mastery",
+    instructorImg: "/Images/Avatar Pengajar/2.png",
+    instructorName: "Budi Santoso",
+    instructorTitle: "Lead Designer di Tokopedia",
+    ratingValue: "4.9",
+    reviewCount: "(210)",
+    originalPrice: "Rp 500K",
+    discountPrice: "Rp 325K",
+  },
+  {
+    image: "/Images/images-kelas/1.jpg",
+    title: "Full Stack Web Developer",
+    instructorImg: "/Images/Avatar Pengajar/1.png",
+    instructorName: "Jenna Ortega",
+    instructorTitle: "Senior Accountant di Gojek",
+    ratingValue: "4.5",
+    reviewCount: "(120)",
+    originalPrice: "Rp 900K",
+    discountPrice: "Rp 700K",
+  },
+  {
+    image: "/Images/images-kelas/2.png",
+    title: "UI/UX Design Mastery",
+    instructorImg: "/Images/Avatar Pengajar/2.png",
+    instructorName: "Budi Santoso",
+    instructorTitle: "Lead Designer di Tokopedia",
+    ratingValue: "4.9",
+    reviewCount: "(210)",
+    originalPrice: "Rp 500K",
+    discountPrice: "Rp 325K",
+  },
 ];
 
 export default function SemuaProdukPage() {
   const [filter, setFilter] = useState({});
   const [courses, setCourses] = useState(courseData);
-  const [filteredCourses, setFilteredCourses] = useState(courseData); // tetap dipakai untuk hasil filter
+  const [filteredCourses, setFilteredCourses] = useState(courseData);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [editingIndex, setEditingIndex] = useState(null);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentCourses = filteredCourses.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredCourses.length / itemsPerPage);
 
   useEffect(() => {
     let result = [...courses];
 
-    // Filter kategori
     if (filter.selectedCategories?.length) {
       result = result.filter((course) =>
         filter.selectedCategories.some((cat) =>
@@ -52,7 +167,6 @@ export default function SemuaProdukPage() {
       );
     }
 
-    // Filter harga
     const min = parseInt(filter.priceRange?.min || 0);
     const max = parseInt(filter.priceRange?.max || Infinity);
     if (filter.priceRange?.min || filter.priceRange?.max) {
@@ -62,7 +176,6 @@ export default function SemuaProdukPage() {
       });
     }
 
-    // Filter durasi dummy
     if (filter.selectedDuration) {
       if (filter.selectedDuration === "< 2 jam") {
         result = result.filter((c) => c.title.includes("1"));
@@ -74,20 +187,18 @@ export default function SemuaProdukPage() {
     }
 
     setFilteredCourses(result);
+    setCurrentPage(1); // reset ke halaman pertama saat filter berubah
   }, [filter, courses]);
-
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
 
       <main className="max-w-[1300px] mx-auto px-4 md:px-6 py-10 flex flex-col lg:flex-row gap-8">
-        {/* Sidebar Filter */}
         <aside className="w-full lg:w-1/4">
           <SidebarFilter onFilterChange={(f) => setFilter(f)} />
         </aside>
 
-        {/* Konten Produk */}
         <section className="w-full lg:w-3/4">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-semibold text-gray-800">Semua Produk</h2>
@@ -112,7 +223,7 @@ export default function SemuaProdukPage() {
               };
               const updatedCourses = [...courses, newCourse];
               setCourses(updatedCourses);
-              setFilteredCourses(updatedCourses); // langsung tampil
+              setFilteredCourses(updatedCourses);
               form.reset();
             }}
             className="mb-6 space-y-2 border p-4 rounded bg-white shadow"
@@ -132,34 +243,43 @@ export default function SemuaProdukPage() {
 
           {/* Daftar Produk */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-            {filteredCourses.length > 0 ? (
-              filteredCourses.map((course, index) => (
-                <ProductCard
-                  key={index}
-                  {...course}
-                  onDelete={() => {
-                    const updated = courses.filter((_, i) => i !== index);
-                    setCourses(updated);
-                    setFilteredCourses(updated);
-                  }}
-                  onEdit={() => {
-                    setEditingIndex(index);
-                    setIsEditOpen(true);
-                  }}
-                />
-              ))
+            {currentCourses.length > 0 ? (
+              currentCourses.map((course, index) => {
+                const realIndex = indexOfFirstItem + index;
+                return (
+                  <ProductCard
+                    key={realIndex}
+                    {...course}
+                    onDelete={() => {
+                      const updated = courses.filter((_, i) => i !== realIndex);
+                      setCourses(updated);
+                      setFilteredCourses(updated);
+                    }}
+                    onEdit={() => {
+                      setEditingIndex(realIndex);
+                      setIsEditOpen(true);
+                    }}
+                  />
+                );
+              })
             ) : (
-              <p className="col-span-full text-center text-gray-500">Tidak ada produk yang cocok dengan filter.</p>
+              <p className="col-span-full text-center text-gray-500">
+                Tidak ada produk yang cocok dengan filter.
+              </p>
             )}
           </div>
 
+          {/* Pagination */}
           <div className="mt-10">
-            <Pagination />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
           </div>
         </section>
       </main>
 
-      {/* Modal Edit */}
       <EditProdukModal
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
@@ -168,6 +288,7 @@ export default function SemuaProdukPage() {
           const updatedCourses = [...courses];
           updatedCourses[editingIndex] = updatedCourse;
           setCourses(updatedCourses);
+          setFilteredCourses(updatedCourses);
         }}
       />
     </div>
