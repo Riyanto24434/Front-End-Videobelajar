@@ -134,3 +134,127 @@ const courseData = [
   },
 ];
 export default courseData;
+
+// DATA DUMMY NEW
+// // [
+//   {
+//     "id": "1",
+//     "title": "Full Stack Web Developer",
+//     "category": "Programming",
+//     "price": 700000,
+//     "image": "https://i.imgur.com/JVJ5OQW.jpeg",
+//     "rating": 4.8,
+//     "instructorName": "Jenna Ortega",
+//     "instructorTitle": "Senior Engineer at Gojek",
+//     "instructorImg": "https://i.imgur.com/K6jh6Im.png",
+//     "duration": "12 Jam"
+//   },
+//   {
+//     "id": "2",
+//     "title": "UI/UX Designer for Beginner",
+//     "category": "Design",
+//     "price": 550000,
+//     "image": "https://i.imgur.com/JVJ5OQW.jpeg",
+//     "rating": 4.5,
+//     "instructorName": "Anya Geraldine",
+//     "instructorTitle": "Lead Designer at Tokopedia",
+//     "instructorImg": "https://i.imgur.com/K6jh6Im.png",
+//     "duration": "8 Jam"
+//   },
+//   {
+//     "id": "3",
+//     "title": "Mastering React with Projects",
+//     "category": "Frontend",
+//     "price": 850000,
+//     "image": "https://i.imgur.com/MuO3zZm.png",
+//     "rating": 4.7,
+//     "instructorName": "Iqbal Ramadhan",
+//     "instructorTitle": "Software Engineer at Traveloka",
+//     "instructorImg": "https://i.imgur.com/SgXC81A.png",
+//     "duration": "10 Jam"
+//   },
+//   {
+//     "id": "4",
+//     "title": "UI Motion & Interaction Design",
+//     "category": "Animation",
+//     "price": 600000,
+//     "image": "https://i.imgur.com/NcOCgZo.png",
+//     "rating": 4.4,
+//     "instructorName": "Chelsea Islan",
+//     "instructorTitle": "Animator at Ruangguru",
+//     "instructorImg": "https://i.imgur.com/SgXC81A.png",
+//     "duration": "7 Jam"
+//   },
+//   {
+//     "id": "5",
+//     "title": "Backend API with Node.js",
+//     "category": "Backend",
+//     "price": 900000,
+//     "image": "https://i.imgur.com/dDPhycD.png",
+//     "rating": 4.6,
+//     "instructorName": "Denny Sumargo",
+//     "instructorTitle": "Backend Engineer at Bukalapak",
+//     "instructorImg": "https://i.imgur.com/K6jh6Im.png",
+//     "duration": "11 Jam"
+//   },
+//   {
+//     "id": "6",
+//     "title": "Digital Marketing Mastery",
+//     "category": "Marketing",
+//     "price": 650000,
+//     "image": "https://i.imgur.com/0ck8spr.png",
+//     "rating": 4.3,
+//     "instructorName": "Raisa Andriana",
+//     "instructorTitle": "Marketing Lead at Shopee",
+//     "instructorImg": "https://i.imgur.com/OMnbVkg.png",
+//     "duration": "6 Jam"
+//   },
+//   {
+//     "id": "7",
+//     "title": "Data Science with Python",
+//     "category": "Data",
+//     "price": 1000000,
+//     "image": "https://i.imgur.com/NcOCgZo.png",
+//     "rating": 4.9,
+//     "instructorName": "Raditya Dika",
+//     "instructorTitle": "Data Scientist at Netflix",
+//     "instructorImg": "https://i.imgur.com/OMnbVkg.png",
+//     "duration": "14 Jam"
+//   },
+//   {
+//     "id": "8",
+//     "title": "Flutter for Mobile Development",
+//     "category": "Mobile",
+//     "price": 720000,
+//     "image": "https://i.imgur.com/dDPhycD.png",
+//     "rating": 4.6,
+//     "instructorName": "Nadya Arina",
+//     "instructorTitle": "Mobile Developer at Grab",
+//     "instructorImg": "https://i.imgur.com/SgXC81A.png",
+//     "duration": "9 Jam"
+//   },
+//   {
+//     "id": "9",
+//     "title": "Machine Learning for Beginners",
+//     "category": "AI",
+//     "price": 950000,
+//     "image": "https://i.imgur.com/0ck8spr.png",
+//     "rating": 4.8,
+//     "instructorName": "Arif Muhammad",
+//     "instructorTitle": "AI Engineer at Google",
+//     "instructorImg": "https://i.imgur.com/OMnbVkg.png",
+//     "duration": "13 Jam"
+//   },
+//   {
+//     "id": "10",
+//     "title": "Build Startup with No-Code Tools",
+//     "category": "Entrepreneurship",
+//     "price": 500000,
+//     "image": "https://i.imgur.com/NcOCgZo.png",
+//     "rating": 4.2,
+//     "instructorName": "Gita Savitri",
+//     "instructorTitle": "Founder of EduTech ID",
+//     "instructorImg": "https://i.imgur.com/OMnbVkg.png",
+//     "duration": "5 Jam"
+//   }
+// ]
