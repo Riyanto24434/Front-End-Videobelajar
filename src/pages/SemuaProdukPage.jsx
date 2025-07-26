@@ -1,4 +1,3 @@
-// src/pages/SemuaProdukPage.jsx
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -16,6 +15,7 @@ import Pagination from "@/components/Pagination";
 import EditProdukModal from "@/components/EditProdukModal";
 import AddProductForm from "@/components/AddProductForm";
 import useFilteredCourses from "@/hooks/useFilteredCourses";
+import { normalizeCourse } from "@/utils/normalizeCourse"; // ✅ Hanya ini
 
 export default function SemuaProdukPage() {
   const dispatch = useDispatch();
@@ -87,19 +87,19 @@ export default function SemuaProdukPage() {
           </button>
 
           {/* Form Tambah Produk */}
-          {showAddForm && (
-            <AddProductForm onAdd={handleAddCourse} />
-          )}
+          {showAddForm && <AddProductForm onAdd={handleAddCourse} />}
 
           {/* Daftar Produk */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
             {currentCourses.length > 0 ? (
               currentCourses.map((course, index) => {
                 const realIndex = indexOfFirstItem + index;
+                const normalized = normalizeCourse(course);
+
                 return (
                   <ProductCard
                     key={realIndex}
-                    {...course}
+                    {...normalized}
                     onDelete={() => handleDeleteCourse(realIndex)}
                     onEdit={() => {
                       setEditingIndex(realIndex);
@@ -116,13 +116,15 @@ export default function SemuaProdukPage() {
           </div>
 
           {/* Pagination */}
-          <div className="mt-10">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
-            />
-          </div>
+          {totalPages > 1 && (
+            <div className="mt-10">
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
+            </div>
+          )}
         </section>
       </main>
 

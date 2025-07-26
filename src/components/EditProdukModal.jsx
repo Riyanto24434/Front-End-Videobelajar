@@ -1,4 +1,4 @@
-// Komponen Modal Edit Produk
+// src/components/EditProdukModal.jsx
 import { useState, useEffect } from "react";
 
 export default function EditProdukModal({ isOpen, onClose, course, onSave }) {
@@ -34,6 +34,8 @@ export default function EditProdukModal({ isOpen, onClose, course, onSave }) {
           <input name="reviewCount" value={formData.reviewCount} onChange={handleChange} placeholder="Jumlah Review (contoh: (100))" className="border p-1 w-full" />
           <input name="originalPrice" value={formData.originalPrice} onChange={handleChange} placeholder="Harga Asli" className="border p-1 w-full" />
           <input name="discountPrice" value={formData.discountPrice} onChange={handleChange} placeholder="Harga Diskon" className="border p-1 w-full" />
+          <input name="duration" value={formData.duration || ""} onChange={handleChange} placeholder="Durasi (misal: 12 Jam)" className="border p-1 w-full" />
+
           <div className="flex justify-end gap-2 pt-2">
             <button type="button" onClick={onClose} className="px-3 py-1 bg-gray-300 rounded">Batal</button>
             <button type="submit" className="px-3 py-1 bg-blue-600 text-white rounded">Simpan</button>
