@@ -7,7 +7,7 @@ Project ini mencakup halaman Register, Login, dan Homepage yang dibangun menggun
 
 ## 📂 Fitur Utama
 
-- ✅ Halaman Register, Login, dan Beranda
+- ✅ Halaman Register, Login, Beranda, dan Semua Produk
 - ✅ Komponen UI yang reusable (Input, Button, dll)
 - ✅ Routing dengan `react-router-dom`
 - ✅ Styling responsif dengan TailwindCSS
