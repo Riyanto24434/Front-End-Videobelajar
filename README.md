@@ -26,4 +26,7 @@ Project ini mencakup halaman Register, Login, dan Homepage yang dibangun menggun
 
 ## 🔑 .env Variables
 Silakan buat file `.env` di folder utama.
+Pastikan file `.env` kamu seperti ini:
+
+VITE_API_URL=https://xxx.mockapi.io
 
