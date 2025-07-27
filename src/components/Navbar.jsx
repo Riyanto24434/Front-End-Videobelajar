@@ -1,7 +1,11 @@
 export default function Navbar() {
   return (
     <nav className="p-4 bg-white shadow">
-      <h1 className="text-lg font-bold">VideoBelajar</h1>
+      <img
+        src="/Images/logo.png"
+        alt="Video Belajar"
+        className="h-10"
+      />
     </nav>
   );
 }
