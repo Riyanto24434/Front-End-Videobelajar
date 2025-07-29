@@ -15,7 +15,7 @@ import Pagination from "@/components/Pagination";
 import EditProdukModal from "@/components/EditProdukModal";
 import AddProductForm from "@/components/AddProductForm";
 import useFilteredCourses from "@/hooks/useFilteredCourses";
-import { normalizeCourse } from "@/utils/normalizeCourse"; // ✅ Hanya ini
+import { normalizeCourse } from "@/utils/normalizeCourse";
 
 export default function SemuaProdukPage() {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ export default function SemuaProdukPage() {
   const [filter, setFilter] = useState({});
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [editingIndex, setEditingIndex] = useState(null);
-  const [showAddForm, setShowAddForm] = useState(false); // toggle tambah produk
+  const [showAddForm, setShowAddForm] = useState(false);
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -46,7 +46,7 @@ export default function SemuaProdukPage() {
   // Tambah produk
   const handleAddCourse = (newCourse) => {
     dispatch(addCourse(newCourse));
-    setShowAddForm(false); // tutup form setelah submit
+    setShowAddForm(false);
   };
 
   // Update produk
