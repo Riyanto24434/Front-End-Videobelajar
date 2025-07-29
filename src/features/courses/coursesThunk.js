@@ -1,18 +1,16 @@
 // src/features/courses/coursesThunk.js
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-const API_URL = `${import.meta.env.VITE_API_URL}/courses`;
+import api from "@/services/api";
 
 // Ambil semua data kursus
 export const fetchCourses = createAsyncThunk("courses/fetchAll", async () => {
-  const res = await axios.get(API_URL);
+  const res = await api.get("/courses");
   return res.data;
 });
 
 // Tambah kursus baru
 export const addCourse = createAsyncThunk("courses/add", async (newCourse) => {
-  const res = await axios.post(API_URL, newCourse);
+  const res = await api.post("/courses", newCourse);
   return res.data;
 });
 
@@ -20,13 +18,13 @@ export const addCourse = createAsyncThunk("courses/add", async (newCourse) => {
 export const updateCourse = createAsyncThunk(
   "courses/update",
   async ({ id, updatedCourse }) => {
-    const res = await axios.put(`${API_URL}/${id}`, updatedCourse);
+    const res = await api.put(`/courses/${id}`, updatedCourse);
     return res.data;
   }
 );
 
 // Hapus kursus
 export const deleteCourse = createAsyncThunk("courses/delete", async (id) => {
-  await axios.delete(`${API_URL}/${id}`);
+  await api.delete(`/courses/${id}`);
   return id;
 });
