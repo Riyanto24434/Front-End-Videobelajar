@@ -32,16 +32,26 @@ export default function SemuaProdukPage() {
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
+
+  // Filtered data
   const filteredCourses = useFilteredCourses(courses, filter);
+  const totalPages = Math.max(1, Math.ceil(filteredCourses.length / itemsPerPage));
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentCourses = filteredCourses.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(filteredCourses.length / itemsPerPage);
 
   // Ambil data dari MockAPI
   useEffect(() => {
     dispatch(fetchCourses());
   }, [dispatch]);
+
+  // Jika currentPage melebihi total halaman, reset
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [totalPages, currentPage]);
 
   // Tambah produk
   const handleAddCourse = (newCourse) => {
@@ -51,15 +61,18 @@ export default function SemuaProdukPage() {
 
   // Update produk
   const handleUpdateCourse = (updatedCourse) => {
-    const id = courses[editingIndex].id;
-    dispatch(updateCourse({ id, updatedCourse }));
+    const id = courses[editingIndex]?.id;
+    if (id) dispatch(updateCourse({ id, updatedCourse }));
   };
 
   // Hapus produk
   const handleDeleteCourse = (index) => {
-    const id = courses[index].id;
-    dispatch(deleteCourse(id));
+    const id = courses[index]?.id;
+    if (id) dispatch(deleteCourse(id));
   };
+
+  // Menangani loading awal
+  const isLoading = courses.length === 0;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -89,41 +102,48 @@ export default function SemuaProdukPage() {
           {/* Form Tambah Produk */}
           {showAddForm && <AddProductForm onAdd={handleAddCourse} />}
 
-          {/* Daftar Produk */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-            {currentCourses.length > 0 ? (
-              currentCourses.map((course, index) => {
-                const realIndex = indexOfFirstItem + index;
-                const normalized = normalizeCourse(course);
+          {/* Loading State */}
+          {isLoading ? (
+            <p className="text-center text-gray-500 py-10">Memuat data produk...</p>
+          ) : (
+            <>
+              {/* Daftar Produk */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                {currentCourses.length > 0 ? (
+                  currentCourses.map((course, index) => {
+                    const realIndex = indexOfFirstItem + index;
+                    const normalized = normalizeCourse(course);
 
-                return (
-                  <ProductCard
-                    key={realIndex}
-                    {...normalized}
-                    onDelete={() => handleDeleteCourse(realIndex)}
-                    onEdit={() => {
-                      setEditingIndex(realIndex);
-                      setIsEditOpen(true);
-                    }}
+                    return (
+                      <ProductCard
+                        key={realIndex}
+                        {...normalized}
+                        onDelete={() => handleDeleteCourse(realIndex)}
+                        onEdit={() => {
+                          setEditingIndex(realIndex);
+                          setIsEditOpen(true);
+                        }}
+                      />
+                    );
+                  })
+                ) : (
+                  <p className="col-span-full text-center text-gray-500">
+                    Tidak ada produk yang cocok dengan filter.
+                  </p>
+                )}
+              </div>
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="mt-10">
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={setCurrentPage}
                   />
-                );
-              })
-            ) : (
-              <p className="col-span-full text-center text-gray-500">
-                Tidak ada produk yang cocok dengan filter.
-              </p>
-            )}
-          </div>
-
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="mt-10">
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={setCurrentPage}
-              />
-            </div>
+                </div>
+              )}
+            </>
           )}
         </section>
       </main>
