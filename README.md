@@ -1,7 +1,7 @@
-# 🚀 Mission Intermediate - Front End (1A)
+# 🚀 Front End Videobelajar
 
-Ini adalah proyek latihan ReactJS untuk misi Intermediate Front End (Batch FSD16).  
-Project ini mencakup halaman Register, Login, dan Homepage yang dibangun menggunakan React, TailwindCSS, dan React Router.
+Ini adalah proyek latihan ReactJS.  
+Project ini mencakup halaman Register, Login, Homepage, dan Semua Produk yang dibangun menggunakan React, TailwindCSS, dan React Router.
 
 ---
 
